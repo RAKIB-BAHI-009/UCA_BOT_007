@@ -233,7 +233,7 @@ return api.sendMessage("I love you too 🥺! মনে লাগে ঢেউ �
    };
 
    if ((event.body.toLowerCase() == "tnx") || (event.body.toLowerCase() == "দন্যবাদ") || (event.body.toLowerCase() == "thank you") || (event.body.toLowerCase() == "thanks")) {
-     return api.sendMessage("️এতো ধন্যবাদ না দিয়ে পারলে আমার বস বাদল চৌধুরী কে গার্লফ্রেন্ড টা দিয়ে দে..!🌚⛏️🌶️", threadID);
+     return api.sendMessage("️এতো ধন্যবাদ না দিয়ে পারলে আমার বস রাকিব চৌধুরী কে গার্লফ্রেন্ড টা দিয়ে দে..!🌚⛏️🌶️", threadID);
    };
 
    if ((event.body.toLowerCase() == "হুম") || (event.body.toLowerCase() == "হ্যাঁ") || (event.body.toLowerCase() == "Hmm") || (event.body.toLowerCase() == "Hmmm") || (event.body.toLowerCase() == "Hum")) {
