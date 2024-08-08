@@ -1,4 +1,4 @@
-// Fixed by Mohammad Nayan. Dont Change Credit
+// Fix by Mohammad Nayan. Dont Change Credit
 
 
 const fs = require('fs');
@@ -13,7 +13,8 @@ async function downloadMusicFromYoutube(link, path) {
 
   try {
     const data = await nayan.ytdown(link);
-    const audioUrl = data.data.audio;
+    console.log(data)
+    const audioUrl = data.data.video;
 
     return new Promise((resolve, reject) => {
       axios({
@@ -56,7 +57,7 @@ async function downloadMusicFromYoutube(link, path) {
 
 module.exports = {
   config: {
-
+    
   name: "song", 
   version: "1.0.0", 
   permission: 0,
@@ -70,9 +71,9 @@ module.exports = {
     "axios":"",
     "fs":"",
     "nayan-media-downloader":"",
-      "ytdl-core":"",
+	  "ytdl-core":"",
     "simple-youtube-api":""
-    }
+	}
 },
 
 handleReply: async function ({ api, event, handleReply }) {
@@ -84,14 +85,14 @@ handleReply: async function ({ api, event, handleReply }) {
         if (fs.statSync(path).size > 26214400) return api.sendMessage('The file cannot be sent because the capacity is greater than 25MB.', event.threadID, () => fs.unlinkSync(path), event.messageID);
         api.unsendMessage(handleReply.messageID)
         return api.sendMessage({ 
-        body: `🎵 Title: ${data.title}\n🎶 Name Channel : ${data.author}\n⏱️ Time: ${this.convertHMS(data.dur)}\n👀 Views: ${data.viewCount}\n🥰 Likes: ${data.likes}\n⏱️Processing time: ${Math.floor((Date.now()- data.timestart)/1000)} second\n💿====𝚁𝙰𝙺𝙸𝙱-𝙱𝙾𝚃====💿`,
+		body: `🎵 Title: ${data.title}\n🎶 Name Channel : ${data.author}\n⏱️ Time: ${this.convertHMS(data.dur)}\n👀 Views: ${data.viewCount}\n🥰 Likes: ${data.likes}\n⏱️Processing time: ${Math.floor((Date.now()- data.timestart)/1000)} second\n💿====DISME PROJECT====💿`,
             attachment: fs.createReadStream(path)}, event.threadID, ()=> fs.unlinkSync(path), 
          event.messageID)
-
+            
     }
     catch (e) { return console.log(e) }
 },
-
+  
 convertHMS: function(value) {
     const sec = parseInt(value, 10); 
     let hours   = Math.floor(sec / 3600);
@@ -102,7 +103,7 @@ convertHMS: function(value) {
     if (seconds < 10) {seconds = "0"+seconds;}
     return (hours != '00' ? hours +':': '') + minutes+':'+seconds;
 },
-
+  
   start: async function ({ nayan, events, args }) {
     if (args.length == 0 || !args) return nayan.reply('» উফফ আবাল কি গান শুনতে চাস তার ২/১ লাইন তো লেখবি নাকি 🥵 empty!', events.threadID, events.messageID);
     const keywordSearch = args.join(" ");
@@ -115,7 +116,7 @@ convertHMS: function(value) {
             var data = await downloadMusicFromYoutube(args.join(" "), path);
             if (fs.statSync(path).size > 26214400) return nayan.reply('Unable to send files because the capacity is greater than 25MB .', events.threadID, () => fs.unlinkSync(path), events.messageID);
             return nayan.reply({ 
-                body: `🎵 Title: ${data.title}\n🎶 Name Channel: ${data.author}\n⏱️ Time: ${this.convertHMS(data.dur)}\n👀 Views: ${data.viewCount}\n👍 Likes: ${data.likes}\n⏱️ Processing time: ${Math.floor((Date.now()- data.timestart)/1000)} second\n💿====𝚁𝙰𝙺𝙸𝙱-𝙱𝙾𝚃====💿`,
+                body: `🎵 Title: ${data.title}\n🎶 Name Channel: ${data.author}\n⏱️ Time: ${this.convertHMS(data.dur)}\n👀 Views: ${data.viewCount}\n👍 Likes: ${data.likes}\n⏱️ Processing time: ${Math.floor((Date.now()- data.timestart)/1000)} second\n💿====DISME PROJECT====💿`,
                 attachment: fs.createReadStream(path)}, events.threadID, ()=> fs.unlinkSync(path), 
             events.messageID)
 
